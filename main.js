@@ -22,10 +22,10 @@ function extractTests(){
   for (var i = 0; i < tests.length; i++) {
     var name = tests[i].getAttribute('data-test-name')
     if (names.indexOf(name)==-1) {
-      names.push(name)
+      names[name]=true;
     }
   }
-  return names
+  return names.keys()
 }
 
 function hideAll(nodes){
@@ -44,8 +44,8 @@ function init(){
   var tests = extractTests();
   var hide = document.querySelectorAll('[data-test-name]');
   var show = [];
-  for (var i = 0; i < tests.length; i++) {
-    show.push(performTest(tests[i]))
+  for (test in tests) {
+    show.push(performTest(test))
   }
 }
 
